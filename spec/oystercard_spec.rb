@@ -10,11 +10,18 @@ describe Oystercard do
   end
 
   describe '#add_money' do
-    it "add money to my card" do
+    it 'add money to my card' do
       subject.add_money(10)
       expect(subject.balance).to eq(10)
     end
+
+    it 'has a max limit of $90' do
+      subject.add_money(90)
+      expect { subject.add_money(1) }.to raise_error('Max Limit')
+    end
   end
+
+
 
 
 end

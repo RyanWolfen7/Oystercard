@@ -13,3 +13,9 @@ Customer   |
 Card       |    add_Money
 
 add_Money --> Card ---> balance
+
+Object     |     Action
+---------     ----------
+card       | max_limit
+
+card --> max_limit
