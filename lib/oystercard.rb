@@ -16,7 +16,19 @@ class Oystercard
   end
 
   def deduct_money(money)
-    @balance - money 
+    @balance - money
+  end
+
+  def touch_in
+
+  end
+
+  def touch_out
+
+  end
+
+  def in_journy?
+    false
   end
 
   private
