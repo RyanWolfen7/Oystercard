@@ -15,6 +15,10 @@ class Oystercard
     @balance = money.to_i
   end
 
+  def deduct_money(money)
+    @balance - money 
+  end
+
   private
 
   def max_limit?

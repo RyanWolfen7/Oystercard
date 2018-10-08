@@ -19,6 +19,15 @@ describe Oystercard do
       subject.add_money(90)
       expect { subject.add_money(1) }.to raise_error('Max Limit')
     end
+
+    describe '#deduct_money' do
+
+      it 'expect balance to be zero' do
+        subject.add_money(50)
+        expect(subject.deduct_money(50)).to eq (0)
+
+      end
+    end
   end
 
 
