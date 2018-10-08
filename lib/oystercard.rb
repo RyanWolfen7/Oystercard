@@ -8,4 +8,7 @@ class Oystercard
     @balance = 0
   end
 
+   def add_money(money)
+     @balance = money.to_i
+   end
 end
