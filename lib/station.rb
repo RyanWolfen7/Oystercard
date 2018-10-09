@@ -1,12 +1,8 @@
 class Station
+  attr_reader :name
 
-  def touch_in
-    true
+  def initialize(name)
+    @name = name
   end
-
-  def touch_out
-    true
-  end
-
 
 end

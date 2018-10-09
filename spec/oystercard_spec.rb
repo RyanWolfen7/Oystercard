@@ -1,4 +1,5 @@
 require 'oystercard'
+require 'pry'
 
 describe Oystercard do
   it { is_expected.to respond_to :add_money }
@@ -40,6 +41,15 @@ describe Oystercard do
       expect(subject).not_to be_in_journy
     end
 
+    it "returns true when touched in" do
+      expect(subject).to receive(:touch_in).and_return(true)
+      expect(subject.touch_in).to eq true
+    end
+
+    it "returns true when touched out" do
+      expect(subject).to receive(:touch_out).and_return(true)
+      expect(subject.touch_out).to eq true
+    end
 
   end
 

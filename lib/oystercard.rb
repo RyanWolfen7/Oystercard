@@ -2,7 +2,7 @@
 
 class Oystercard
 
-  attr_reader :balance
+  attr_reader :balance, :touch_in, :touch_out
 
   DEFAULT_LIMIT = 90
 
@@ -17,14 +17,6 @@ class Oystercard
 
   def deduct_money(money)
     @balance - money
-  end
-
-  def touch_in
-
-  end
-
-  def touch_out
-
   end
 
   def in_journy?
