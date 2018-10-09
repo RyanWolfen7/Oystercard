@@ -2,7 +2,7 @@
 
 class Oystercard
 
-  attr_reader :balance, :entry_station
+  attr_reader :balance, :entry_station, :history
 
   DEFAULT_LIMIT = 90
   DEFAULT_MIN_TO_RIDE = 1
@@ -10,6 +10,7 @@ class Oystercard
 
   def initialize
     @balance = DEFAULT_INIT_BALANCE
+    @history = []
   end
 
   def add_money(money)
@@ -23,8 +24,9 @@ class Oystercard
 
   end
 
-  def touch_out
+  def touch_out(station)
     deduct_money(1)
+    log_trip(@entry_station, station)
     @entry_station = nil
   end
 
@@ -44,5 +46,9 @@ class Oystercard
 
   def deduct_money(money)
     @balance -= money
+  end
+
+  def log_trip(station_one, station_two)
+    @history << { entry: station_one, exit: station_two}
   end
 end

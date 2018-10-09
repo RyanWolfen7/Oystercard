@@ -41,7 +41,7 @@ describe Oystercard do
     it 'is expected to be out of a journey' do
       subject.instance_variable_set(:@balance, 10)
       subject.touch_in(station)
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject).not_to be_in_journey
     end
   end
@@ -62,7 +62,16 @@ describe Oystercard do
   describe '#touch out' do
     it 'is expected to take money at the end of journey' do
       subject.instance_variable_set(:@balance, 10)
-      expect{ subject.touch_out }.to change{ subject.balance }.by( -1 )
+      expect{ subject.touch_out(station) }.to change{ subject.balance }.by( -1 )
+    end
+  end
+
+  describe '#History' do
+    it 'is expected to return an array pf stations' do
+      subject.instance_variable_set(:@balance, 10)
+      subject.touch_in(station)
+      subject.touch_out(station)
+      expect(subject.history).to eq [{:entry=> station, :exit=> station }]
     end
   end
 
