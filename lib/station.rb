@@ -1,11 +1,7 @@
 class Station
 
-  def touch_in
-    true
-  end
-
-  def touch_out
-    true
+  def initialize(name)
+    @name = name
   end
 
 
