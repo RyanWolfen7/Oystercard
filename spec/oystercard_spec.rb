@@ -55,7 +55,14 @@ describe Oystercard do
     it 'is expected to remember the station' do
       subject.instance_variable_set(:@balance, 10)
       subject.touch_in(station)
-      expect(subject.entry_station).to eq station
+      expect(subject.in_journey?).to eq true
+    end
+
+    it 'is epected to charge you a penalty if you touch in while in journy' do
+      subject.instance_variable_set(:@balance, 10)
+      subject.touch_in(station)
+      subject.touch_in(station)
+      expect(subject.balance).to eq 5
     end
   end
 
@@ -63,15 +70,6 @@ describe Oystercard do
     it 'is expected to take money at the end of journey' do
       subject.instance_variable_set(:@balance, 10)
       expect{ subject.touch_out(station) }.to change{ subject.balance }.by( -1 )
-    end
-  end
-
-  describe '#History' do
-    it 'is expected to return an array pf stations' do
-      subject.instance_variable_set(:@balance, 10)
-      subject.touch_in(station)
-      subject.touch_out(station)
-      expect(subject.history).to eq [{:entry=> station, :exit=> station }]
     end
   end
 
