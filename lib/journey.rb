@@ -1,12 +1,13 @@
 # this class tracks a journey
+require_relative 'journey_log'
 
 class Journey
 
-  attr_reader :entry_station, :history
+  attr_reader :entry_station, :log
 
   def initialize
     @entry_station = nil
-    @history = []
+    @log = JourneyLog.new
   end
 
   def touch_in(station)
@@ -14,12 +15,7 @@ class Journey
   end
 
   def touch_out(station)
-    log_trip(@entry_station, station)
+    @log.log_history(@entry_station, station)
     @entry_station = nil
   end
-
-  def log_trip(station_one, station_two)
-    @history << { entry: station_one, exit: station_two}
-  end
-
 end
